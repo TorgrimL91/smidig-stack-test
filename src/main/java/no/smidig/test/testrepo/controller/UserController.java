@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.soap.SOAPBinding;
 import javax.validation.Valid;
 
 
@@ -26,19 +27,33 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
-   /* @PostMapping("")
-    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result){
 
-        ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUserByUserName(@PathVariable String username){
+        User user = userService.findUserByIdentifier(username);
 
-        if(errorMap != null){
-            return errorMap;
-        }
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
 
-        Project project1 = projectService.saveOrUpdateProject(project);
-        return new ResponseEntity<Project>(project, HttpStatus.CREATED);
-    }*/
+    @GetMapping("/all")
+    public Iterable<User> getAllUsers(){
+        return userService.findAllUsers();
+    }
 
+    /*
+
+    @GetMapping("/all")
+    public Iterable<Project> getAllProjects(){
+        return projectService.findAllProjects();
+    }
+
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity<?> deleteProjectByIdentifier(@PathVariable String projectId){
+        projectService.deleteProjectByIdentifier(projectId);
+
+        return new ResponseEntity<String>("Project with ID '" + projectId + "' was deleted", HttpStatus.OK);
+    }
+     */
 
 
 }
