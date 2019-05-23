@@ -40,20 +40,12 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    /*
+    @DeleteMapping("/{username}")
+    public ResponseEntity<?> deleteUserByIdentifier(@PathVariable String username){
+        userService.deleteUserByIdentifier(username);
 
-    @GetMapping("/all")
-    public Iterable<Project> getAllProjects(){
-        return projectService.findAllProjects();
+        return new ResponseEntity<String>("User with username '" + username + "' was deleted", HttpStatus.OK);
     }
-
-    @DeleteMapping("/{projectId}")
-    public ResponseEntity<?> deleteProjectByIdentifier(@PathVariable String projectId){
-        projectService.deleteProjectByIdentifier(projectId);
-
-        return new ResponseEntity<String>("Project with ID '" + projectId + "' was deleted", HttpStatus.OK);
-    }
-     */
 
 
 }

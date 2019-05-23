@@ -21,8 +21,7 @@ public class UserService {
 
         return userRepository.save(user);
     }
-
-    //deleteUserById(bruke den ferdige metoden fra crudrepository
+    
 
     public User findUserByIdentifier(String username){
         User user = userRepository.findByUserName(username);
@@ -34,24 +33,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    /*
+    public void deleteUserByIdentifier(String username){
+        User user = userRepository.findByUserName(username);
 
-
-    public Iterable<Project> findAllProjects(){
-        return  projectRepository.findAll();
+        //dette er dårlig kode. vi har allerede gjort et databasekall. bør være unødvendig å gjøre et til. fiks dette senere
+        userRepository.deleteById(user.getId());
     }
 
-    public void deleteProjectByIdentifier(String projectId){
-        Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
-
-        if(project == null){
-            throw new ProjectIdException("Cannot delete project with ID '" + projectId + "'. This project does not exist");
-        }
-
-        projectRepository.delete(project);
-    }
-
-
-     */
 
 }
