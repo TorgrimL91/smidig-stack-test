@@ -16,8 +16,8 @@ class SignUp extends Component {
         firstName: "",
         lastName: "",
         email: "",
-        phoneNumber: "",
-        password: ""
+        password: "",
+          phoneNumber: ''
 
     };
     this.onSubmit = this.onSubmit.bind(this);

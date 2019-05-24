@@ -3,11 +3,8 @@ package no.smidig.test.testrepo.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 
 import java.util.Date;
 @Entity
@@ -36,8 +33,10 @@ public class User {
     @Column(unique=true, nullable=false)
     private String email;
 
+
+    // jeg måte fjerne nullable=false på telefonnummeret
     @NotBlank(message = "Please register your phone number")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private int phoneNumber;
 
 
@@ -45,8 +44,7 @@ public class User {
 
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date end_date;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -117,17 +115,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-
-
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
     }
 
     public Date getCreated_At() {
