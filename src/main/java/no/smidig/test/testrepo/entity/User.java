@@ -3,13 +3,27 @@ package no.smidig.test.testrepo.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+import java.util.Date;
 @Entity
 public class User {
+
+    /**
+     * Nå har je satt annotation på kolonene i databasen
+     * **/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique=true, nullable=false)
+    private String userName;
+
 
     @NotNull
     private String firstName;
@@ -17,22 +31,43 @@ public class User {
     @NotNull
     private String lastName;
 
-    @NotNull
-    @Column(unique = true)
+    @Column(unique=true, nullable=false)
+    private String email;
+
+
+    @Column(unique = true, nullable = false)
     private int phoneNumber;
 
-    @NotNull
-    @Column(unique = true)
-    private String email;
 
     private String password;
 
-    @NotNull
-    @Column(unique = true)
-    private String userName;
+
+
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date end_date;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date created_At;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date updated_At;
+
+
+
+
+
 
     public User() {
     }
+
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -82,11 +117,43 @@ public class User {
         this.userName = userName;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+
+
+
+    public Date getEnd_date() {
+        return end_date;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
+
+    public Date getCreated_At() {
+        return created_At;
+    }
+
+    public void setCreated_At(Date created_At) {
+        this.created_At = created_At;
+    }
+
+    public Date getUpdated_At() {
+        return updated_At;
+    }
+
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
+    }
+
+    @PrePersist
+    protected void onCreate(){
+        this.created_At = new Date();
+    }
+
+
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updated_At = new Date();
+    }
+
 }
