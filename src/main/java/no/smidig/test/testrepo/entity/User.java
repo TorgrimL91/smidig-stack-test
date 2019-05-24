@@ -21,20 +21,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Please register a username")
     @Column(unique=true, nullable=false)
     private String userName;
 
 
-    @NotNull
+    @NotNull(message = "Please register your name")
     private String firstName;
 
-    @NotNull
+    @NotNull(message = "Please register your name")
     private String lastName;
 
+    @NotBlank(message = "Please register your email adress")
     @Column(unique=true, nullable=false)
     private String email;
 
-
+    @NotBlank(message = "Please register your phone number")
     @Column(unique = true, nullable = false)
     private int phoneNumber;
 
@@ -43,11 +45,11 @@ public class User {
 
 
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date end_date;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
 
