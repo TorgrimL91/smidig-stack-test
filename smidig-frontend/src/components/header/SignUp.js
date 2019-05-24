@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createUser } from "../../actions/userActions";
 
 
 
@@ -20,6 +21,7 @@ class SignUp extends Component {
 
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
 onChange(e){
@@ -39,7 +41,8 @@ onSubmit(e){
     password: this.state.password
   };
 
-  console.log(newUser);
+
+   this.props.createUser(newUser, this.props.history);
 }
 
   render() {
@@ -124,6 +127,12 @@ onSubmit(e){
 
 }
 
+SignUp.propTypes = {
+
+  createUser: PropTypes.func.isRequired
+
+};
 
 
-export default SignUp;
+
+export default connect(null, {createUser}) (SignUp);
