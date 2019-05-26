@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 import java.util.Date;
+
 @Entity
 public class User {
 
@@ -35,8 +36,8 @@ public class User {
 
 
     // jeg måte fjerne nullable=false på telefonnummeret
-    @NotBlank(message = "Please register your phone number")
-    @Column(unique = true)
+    @NotNull(message = "Please register your phone number")
+    @Column(unique = true,nullable=false)
     private int phoneNumber;
 
 

@@ -1,8 +1,41 @@
 import React, { Component } from "react";
+import axios from 'axios'
 
 
 
 class ProjectItem extends Component {
+
+
+  state = {
+   postContent: []
+ }
+
+
+
+componentDidMount() {
+this.getPost();
+
+}
+
+
+
+  getPost(){
+
+    axios.get(`http://localhost:8080/api/post/all`)
+    .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+}
+
+
 
   render() {
 
@@ -24,7 +57,9 @@ class ProjectItem extends Component {
 
               <h3>Spring / React Project</h3>
 
-              <p>Project to create a Kanban Board with Spring Boot and React</p>
+              <p>  <ul>
+
+      </ul></p>
 
             </div>
 

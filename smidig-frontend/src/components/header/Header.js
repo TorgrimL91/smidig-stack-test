@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SignUp from './SignUp'
+import Dashboard from './Dashboard'
 import './header.css';
 import {
   Route,
@@ -9,7 +10,29 @@ import {
 } from "react-router-dom";
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 class Header extends Component {
+
+
+
+
+
+
+
+
+
+
 
   render() {
 
@@ -50,11 +73,9 @@ class Header extends Component {
 
               <li className="nav-item">
 
-                <a className="nav-link" href="/dashboard">
+              <NavLink to="/Dashboard"><p1> Dashboard</p1></NavLink>
 
-                  Dashboard
 
-                </a>
 
               </li>
 
@@ -96,6 +117,7 @@ class Header extends Component {
 
       </nav>
       <Route path="/SignUp" component={SignUp} />
+      <Route path="/Dashboard" component={Dashboard} />
       </HashRouter >
       </div>
 

@@ -14,7 +14,7 @@ let store;
 
 
 
-if (window.navigator.userAgent.includes("Chrome")) {
+if (("Chrome")) {
 
   store = createStore(
 
