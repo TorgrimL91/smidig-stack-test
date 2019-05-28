@@ -16,14 +16,14 @@ public class EventsService {
 
     public EventsEntity saveOrUpdateEvent(EventsEntity eventsEntity){
 
-        eventsEntity.setEventsName(eventsEntity.getEventsName().toUpperCase());
+        eventsEntity.setId(eventsEntity.getId());
 
         return eventsRepository.save(eventsEntity);
     }
 
 
-    public EventsEntity findEventByIdentifier(String eventName){
-        EventsEntity eventsEntity = eventsRepository.findByEventsName(eventName);
+    public EventsEntity findEventByIdentifier(Long id){
+        EventsEntity eventsEntity = eventsRepository.findByid(id);
 
         return eventsEntity;
     }
@@ -32,8 +32,8 @@ public class EventsService {
         return eventsRepository.findAll();
     }
 
-    public void deleteEventByIdentifier(String eventName){
-        EventsEntity eventsEntity = eventsRepository.findByEventsName(eventName);
+    public void deleteEventByIdentifier(Long id){
+        EventsEntity eventsEntity = eventsRepository.findByid(id);
 
         //dette er dårlig kode. vi har allerede gjort et databasekall. bør være unødvendig å gjøre et til. fiks dette senere
         eventsRepository.deleteById(eventsEntity.getId());

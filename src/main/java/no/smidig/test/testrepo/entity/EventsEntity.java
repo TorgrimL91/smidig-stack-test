@@ -26,6 +26,12 @@ public class EventsEntity {
 
 
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition="mediumblob")
+    private String eventImage;
+
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -46,6 +52,14 @@ public class EventsEntity {
 
 
     public EventsEntity() {
+    }
+
+    public String getEventImage() {
+        return eventImage;
+    }
+
+    public void setEventImage(String eventImage) {
+        this.eventImage = eventImage;
     }
 
     public Long getId() {

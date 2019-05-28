@@ -30,9 +30,9 @@ public class EventsController {
     }
 
 
-    @GetMapping("/{eventname}")
-    public ResponseEntity<?> getEventByEventName(@PathVariable String eventname){
-        EventsEntity eventsEntity = eventsService.findEventByIdentifier(eventname);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getEventByEventName(@PathVariable Long id){
+        EventsEntity eventsEntity = eventsService.findEventByIdentifier(id);
 
         return new ResponseEntity<EventsEntity>(eventsEntity, HttpStatus.OK);
     }
@@ -42,11 +42,11 @@ public class EventsController {
         return eventsService.findAllEvents();
     }
 
-    @DeleteMapping("/{eventsname}")
-    public ResponseEntity<?> deleteEventByIdentifier(@PathVariable String eventsname){
-        eventsService.deleteEventByIdentifier(eventsname);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEventByIdentifier(@PathVariable Long id){
+        eventsService.deleteEventByIdentifier(id);
 
-        return new ResponseEntity<String>("Event with eventname '" + eventsname + "' was deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Event with eventname '" + id + "' was deleted", HttpStatus.OK);
     }
 
 
