@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends CrudRepository<PostEntity, Long> {
 
-    PostEntity findByPostContent(String postContent);
+    PostEntity findByid(Long id);
 
     Iterable<PostEntity> findAll();
 }

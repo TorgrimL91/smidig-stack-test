@@ -17,6 +17,7 @@ public class PostEntity {
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition="mediumblob")
     private String postImage;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

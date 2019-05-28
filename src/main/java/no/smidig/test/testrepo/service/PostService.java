@@ -16,14 +16,14 @@ public class PostService {
 
     public PostEntity saveOrUpdatePost(PostEntity postEntity){
 
-        postEntity.setPostContent(postEntity.getPostContent().toUpperCase());
+        postEntity.setId(postEntity.getId());
 
         return postRepository.save(postEntity);
     }
 
 
-    public PostEntity findPostByIdentifier(String postContent){
-        PostEntity postEntity = postRepository.findByPostContent(postContent);
+    public PostEntity findPostByIdentifier(Long id){
+        PostEntity postEntity = postRepository.findByid(id);
 
         return postEntity;
     }
@@ -32,8 +32,8 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public void deletePostByIdentifier(String postContent){
-        PostEntity postEntity = postRepository.findByPostContent(postContent);
+    public void deletePostByIdentifier(Long id){
+        PostEntity postEntity = postRepository.findByid(id);
 
         //dette er dårlig kode. vi har allerede gjort et databasekall. bør være unødvendig å gjøre et til. fiks dette senere
         postRepository.deleteById(postEntity.getId());

@@ -31,9 +31,9 @@ public class PostController {
     }
 
 
-    @GetMapping("/{postcontent}")
-    public ResponseEntity<?> getPostByPostContent(@PathVariable String postcontent){
-        PostEntity postEntity = postService.findPostByIdentifier(postcontent);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPostByPostId(@PathVariable Long id){
+        PostEntity postEntity = postService.findPostByIdentifier(id);
 
         return new ResponseEntity<PostEntity>(postEntity, HttpStatus.OK);
     }
@@ -43,11 +43,11 @@ public class PostController {
         return postService.findAllPost();
     }
 
-    @DeleteMapping("/{postcontent}")
-    public ResponseEntity<?> deletePostByIdentifier(@PathVariable String postcontent){
-        postService.deletePostByIdentifier(postcontent);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePostByIdentifier(@PathVariable Long id){
+        postService.deletePostByIdentifier(id);
 
-        return new ResponseEntity<String>("Post with postcontent '" + postcontent + "' was deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Post with postId '" + id + "' was deleted", HttpStatus.OK);
     }
 
 
