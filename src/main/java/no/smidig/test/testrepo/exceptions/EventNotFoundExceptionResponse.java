@@ -1,11 +1,10 @@
 package no.smidig.test.testrepo.exceptions;
 
-public class EventsNotFoundExceptionResponse {
-
+public class EventNotFoundExceptionResponse {
 
     private String EventNotFound;
 
-    public EventsNotFoundExceptionResponse(String eventNotFound){
+    public EventNotFoundExceptionResponse(String eventNotFound){
         EventNotFound = eventNotFound;
     }
 
@@ -17,5 +16,3 @@ public class EventsNotFoundExceptionResponse {
         EventNotFound = eventNotFound;
     }
 }
-
-

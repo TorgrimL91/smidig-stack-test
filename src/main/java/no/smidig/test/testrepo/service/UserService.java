@@ -4,10 +4,7 @@ package no.smidig.test.testrepo.service;
 import no.smidig.test.testrepo.entity.User;
 import no.smidig.test.testrepo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class UserService {

@@ -3,6 +3,7 @@ package no.smidig.test.testrepo.controller;
 
 
 import no.smidig.test.testrepo.entity.PostEntity;
+import no.smidig.test.testrepo.service.MapValidationErrorService;
 import no.smidig.test.testrepo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,11 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+
+
+    @Autowired
+    private MapValidationErrorService mapValidationErrorService;
+
     @PostMapping("")
     public ResponseEntity<?> createNewPost(@Valid @RequestBody PostEntity postEntity, BindingResult result){
         PostEntity postEntity1 = postService.saveOrUpdatePost(postEntity);
@@ -32,11 +38,12 @@ public class PostController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPostByPostId(@PathVariable Long id){
-        PostEntity postEntity = postService.findPostByIdentifier(id);
+    public ResponseEntity<?> getPostByPostId(@PathVariable String username){
+        PostEntity postEntity = postService.findPostByIdentifier(username);
 
         return new ResponseEntity<PostEntity>(postEntity, HttpStatus.OK);
     }
+
 
     @GetMapping("/all")
     public Iterable<PostEntity> getAllPost(){
@@ -44,10 +51,10 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePostByIdentifier(@PathVariable Long id){
-        postService.deletePostByIdentifier(id);
+    public ResponseEntity<?> deletePostByIdentifier(@PathVariable String username){
+        postService.deletePostByIdentifier(username);
 
-        return new ResponseEntity<String>("Post with postId '" + id + "' was deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Post with username '" + username + "' was deleted", HttpStatus.OK);
     }
 
 

@@ -1,54 +1,42 @@
 package no.smidig.test.testrepo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class PostEntity {
+public class Location {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String postContent;
+    private String state;
 
+    private String city;
 
-
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(columnDefinition="mediumblob")
-    private String postImage;
+    private String address;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
-//Many to One user
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name="username", updatable = false, nullable = false)
-    @JsonIgnore
-    private User user;
 
 
-//One to Many post
-
-
-    public PostEntity() {
-    }
 
     @PrePersist
     protected void onCreate(){
         this.created_At = new Date();
     }
+
     @PreUpdate
     protected void onUpdate(){
         this.updated_At = new Date();
     }
+
 
     public Long getId() {
         return id;
@@ -58,20 +46,28 @@ public class PostEntity {
         this.id = id;
     }
 
-    public String getPostContent() {
-        return postContent;
+    public String getState() {
+        return state;
     }
 
-    public void setPostContent(String postContent) {
-        this.postContent = postContent;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getPostImage() {
-        return postImage;
+    public String getCity() {
+        return city;
     }
 
-    public void setPostImage(String postImage) {
-        this.postImage = postImage;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Date getCreated_At() {
@@ -89,21 +85,4 @@ public class PostEntity {
     public void setUpdated_At(Date updated_At) {
         this.updated_At = updated_At;
     }
-
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
-
-
-
-
-
 }

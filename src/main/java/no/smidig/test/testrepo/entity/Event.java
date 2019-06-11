@@ -7,39 +7,40 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class PostEntity {
-
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String postContent;
+
+    private String eventName;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+
+    private String location;
+
+    private String category;
 
 
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(columnDefinition="mediumblob")
-    private String postImage;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
-//Many to One user
+
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name="username", updatable = false, nullable = false)
     @JsonIgnore
     private User user;
 
 
-//One to Many post
 
 
-    public PostEntity() {
-    }
 
     @PrePersist
     protected void onCreate(){
@@ -50,6 +51,7 @@ public class PostEntity {
         this.updated_At = new Date();
     }
 
+
     public Long getId() {
         return id;
     }
@@ -58,20 +60,21 @@ public class PostEntity {
         this.id = id;
     }
 
-    public String getPostContent() {
-        return postContent;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setPostContent(String postContent) {
-        this.postContent = postContent;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
-    public String getPostImage() {
-        return postImage;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setPostImage(String postImage) {
-        this.postImage = postImage;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getCreated_At() {
@@ -90,20 +93,29 @@ public class PostEntity {
         this.updated_At = updated_At;
     }
 
-
-
-    public User getUser() {
-        return user;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
+    public String getLocation() {
+        return location;
+    }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
+    public String getCategory() {
+        return category;
+    }
 
-
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
 
 }

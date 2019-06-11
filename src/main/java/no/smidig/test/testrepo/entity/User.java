@@ -1,12 +1,13 @@
 package no.smidig.test.testrepo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -30,6 +31,8 @@ public class User {
     @NotNull(message = "Please register your name")
     private String lastName;
 
+    private int age;
+
     @NotBlank(message = "Please register your email adress")
     @Column(unique=true, nullable=false)
     private String email;
@@ -40,9 +43,14 @@ public class User {
     @Column(unique = true,nullable=false)
     private int phoneNumber;
 
-
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<PostEntity> post = new ArrayList<>();
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Event> event = new ArrayList<>();
 
 
 
@@ -57,6 +65,18 @@ public class User {
 
 
     public User() {
+    }
+
+    @PrePersist
+    protected void onCreate(){
+        this.created_At = new Date();
+    }
+
+
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updated_At = new Date();
     }
 
 
@@ -134,16 +154,27 @@ public class User {
         this.updated_At = updated_At;
     }
 
-    @PrePersist
-    protected void onCreate(){
-        this.created_At = new Date();
+    public List<PostEntity> getPost() {
+        return post;
     }
 
-
-
-    @PreUpdate
-    protected void onUpdate(){
-        this.updated_At = new Date();
+    public void setPost(List<PostEntity> post) {
+        this.post = post;
     }
 
+    public List<Event> getEvent() {
+        return event;
+    }
+
+    public void setEvent(List<Event> event) {
+        this.event = event;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
