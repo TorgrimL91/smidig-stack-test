@@ -40,7 +40,7 @@ public class CommentService {
     }
 
     public Comment findCommentByIdentifier(Long id){
-        Comment comment = commentRepository.findByCommentId(id);
+        Comment comment = commentRepository.getById(id);
         return comment;
     }
 
@@ -50,7 +50,7 @@ public class CommentService {
 
 
     public void deleteCommentByCommentIdentifier(Long id){
-        Comment comment1 = commentRepository.findByCommentId(id);
+        Comment comment1 = commentRepository.getById(id);
 
         commentRepository.deleteById(comment.getId());
     }

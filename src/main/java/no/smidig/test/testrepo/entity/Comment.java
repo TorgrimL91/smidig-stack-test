@@ -27,7 +27,7 @@ public class Comment {
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name="id", updatable = false, nullable = false)
+    @JoinColumn(name="postid", updatable = false, nullable = false)
     @JsonIgnore
     private PostEntity post;
 
