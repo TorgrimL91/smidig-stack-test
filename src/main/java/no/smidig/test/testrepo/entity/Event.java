@@ -26,9 +26,10 @@ public class Event {
 
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-ddHH:mm:ss")
+    @Column(name = "created_at")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-ddHH:mm:ss")
     private Date updated_At;
 
 
@@ -37,6 +38,7 @@ public class Event {
     @JoinColumn(name="username", updatable = false, nullable = false)
     @JsonIgnore
     private User user;
+
 
 
 

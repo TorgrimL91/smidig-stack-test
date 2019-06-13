@@ -8,8 +8,14 @@ import no.smidig.test.testrepo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class EventService {
+
+
+    private Event event;
 
 
     @Autowired
@@ -17,6 +23,9 @@ public class EventService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
 
     public Event addEvent(String eventName, Event event){
@@ -28,7 +37,7 @@ public class EventService {
 
 
     public Event saveOrUpdateEvent(Event event){
-
+        entityManager.refresh(event);
         event.setId(event.getId());
 
         return eventRepository.save(event);

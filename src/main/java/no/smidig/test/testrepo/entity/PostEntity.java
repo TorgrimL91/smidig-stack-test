@@ -23,17 +23,17 @@ public class PostEntity {
     @Column(columnDefinition="mediumblob")
     private String postImage;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-ddHH:mm:ss")
+    @Column(name = "created_at")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-ddHH:mm:ss")
     private Date updated_At;
 
-//Many to One user
+    //Many to One user
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name="username", updatable = false, nullable = false)
     @JsonIgnore
     private User user;
-
 
 //One to Many post
 

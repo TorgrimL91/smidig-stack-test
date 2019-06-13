@@ -6,7 +6,10 @@ import no.smidig.test.testrepo.service.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/event")
@@ -20,6 +23,12 @@ public class EventController {
     private MapValidationErrorService mapValidationErrorService;
 
 
+    @PostMapping("")
+    public ResponseEntity<?> createNewPost(@Valid @RequestBody Event event, BindingResult result){
+        Event event1 = eventService.saveOrUpdateEvent(event);
+
+        return new ResponseEntity<Event>(event, HttpStatus.CREATED);
+    }
 
 
     @GetMapping("/{id}")

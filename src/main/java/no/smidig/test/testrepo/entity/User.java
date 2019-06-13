@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -46,17 +47,19 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    private List<PostEntity> post = new ArrayList<>();
+    @OrderBy("created_at DESC ")
+    private List<PostEntity> post = new LinkedList<>();
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Event> event = new ArrayList<>();
+    @OrderBy("created_at DESC ")
+    private List<Event> event =  new LinkedList<>();
 
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd@HH:mm:ss")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd@HH:mm:ss")
     private Date updated_At;
 
 
