@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class PostEntity {
@@ -36,6 +38,9 @@ public class PostEntity {
     private User user;
 
 //One to Many post
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "post")
+    @OrderBy("created_at DESC ")
+    private List<Comment> comment =  new LinkedList<>();
 
 
     public PostEntity() {
@@ -100,10 +105,11 @@ public class PostEntity {
         this.user = user;
     }
 
+    public List<Comment> getComment() {
+        return comment;
+    }
 
-
-
-
-
-
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
+    }
 }
