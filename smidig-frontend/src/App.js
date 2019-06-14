@@ -7,6 +7,13 @@ import './App.css';
 
 class App extends Component{
 
+{
+  /*
+  Alle Designelementer er basert paa https://github.com/AgileIntelligence/AgileIntPPMTool
+  en del av koden er ogsaa inspirert av dette prosjektet
+  */
+}
+
 render(){
   return (
     <Provider store={store}>

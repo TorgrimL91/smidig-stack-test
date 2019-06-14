@@ -2,6 +2,13 @@ import React, { Component } from "react";
 
 import ProjectItem from "./ProjectItem";
 
+{
+  /*
+  Alle Designelementer er basert paa https://github.com/AgileIntelligence/AgileIntPPMTool
+  en del av koden er ogsaa inspirert av dette prosjektet
+  */
+}
+
 class Dashboard extends Component {
   render() {
     return (

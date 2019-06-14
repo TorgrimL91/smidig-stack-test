@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createPost } from "../../actions/postActions";
 
+{
+  /*
+  Alle Designelementer er basert paa https://github.com/AgileIntelligence/AgileIntPPMTool
+  en del av koden er ogsaa inspirert av dette prosjektet
+  */
+}
+
 class NewPost extends Component {
   constructor() {
     super();

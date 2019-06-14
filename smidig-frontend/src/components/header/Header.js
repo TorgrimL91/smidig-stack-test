@@ -4,6 +4,13 @@ import Dashboard from "./Dashboard";
 import "./header.css";
 import { Route, NavLink, HashRouter, BrowserRouter } from "react-router-dom";
 
+{
+  /*
+  Alle Designelementer er basert paa https://github.com/AgileIntelligence/AgileIntPPMTool
+  en del av koden er ogsaa inspirert av dette prosjektet
+  */
+}
+
 class Header extends Component {
   render() {
     return (

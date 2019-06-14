@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createUser } from "../../actions/userActions";
 
+{
+  /*
+  Alle Designelementer er basert paa https://github.com/AgileIntelligence/AgileIntPPMTool
+  en del av koden er ogsaa inspirert av dette prosjektet
+  */
+}
+
 class SignUp extends Component {
   constructor() {
     super();

@@ -3,6 +3,13 @@ import axios from "axios";
 import { Route, NavLink, HashRouter, BrowserRouter } from "react-router-dom";
 import NewPost from "./NewPost";
 
+{
+  /*
+  Alle Designelementer er basert paa https://github.com/AgileIntelligence/AgileIntPPMTool
+  en del av koden er ogsaa inspirert av dette prosjektet
+  */
+}
+
 var api_url = "http://localhost:8080/api/post/all";
 var api_user = "http://localhost:8080/api/user/all";
 
