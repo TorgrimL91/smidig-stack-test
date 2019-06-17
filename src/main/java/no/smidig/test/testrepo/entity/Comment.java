@@ -25,11 +25,17 @@ public class Comment {
     private Date updated_At;
 
 
-
+    //Many to One user
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name="postid", updatable = false, nullable = false)
     @JsonIgnore
     private PostEntity post;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name="username", updatable = false, nullable = false)
+    @JsonIgnore
+    private User user;
 
 
     @PrePersist

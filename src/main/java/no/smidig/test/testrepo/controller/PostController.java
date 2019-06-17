@@ -2,7 +2,9 @@ package no.smidig.test.testrepo.controller;
 
 
 
+import no.smidig.test.testrepo.entity.Comment;
 import no.smidig.test.testrepo.entity.PostEntity;
+import no.smidig.test.testrepo.service.CommentService;
 import no.smidig.test.testrepo.service.MapValidationErrorService;
 import no.smidig.test.testrepo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CommentService commentService;
 
 
     @Autowired
@@ -37,7 +41,17 @@ public class PostController {
     }
 
 
-    @GetMapping("/{id}")
+    @PostMapping("/comment/{username}")
+    public ResponseEntity<?> addComment(@Valid @RequestBody Comment comment, BindingResult result,
+                                        @PathVariable String username){
+        ResponseEntity<?> erroMap = mapValidationErrorService.MapValidationService(result);
+        if(erroMap != null) return erroMap;
+
+        Comment comment1 = commentService.addComment(username, comment);
+        return new ResponseEntity<Comment>(comment1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{username}")
     public ResponseEntity<?> getPostByPostId(@PathVariable String username){
         PostEntity postEntity = postService.findPostByIdentifier(username);
 
@@ -50,7 +64,7 @@ public class PostController {
         return postService.findAllPost();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{username}")
     public ResponseEntity<?> deletePostByIdentifier(@PathVariable String username){
         postService.deletePostByIdentifier(username);
 

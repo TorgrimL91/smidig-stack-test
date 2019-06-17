@@ -50,9 +50,7 @@ public class UserController {
     }
 
 
-
-
-    @PostMapping("/{username}")
+    @PostMapping("/post/{username}")
     public ResponseEntity<?> addPost(@Valid @RequestBody PostEntity postEntity, BindingResult result,
                                      @PathVariable String username){
         ResponseEntity<?> erroMap = mapValidationErrorService.MapValidationService(result);
@@ -64,20 +62,13 @@ public class UserController {
     }
 
 
-    @PostMapping("/event/{user_id}")
-    public ResponseEntity<?> addEvent(@Valid @RequestBody Event event, BindingResult result,
-                                     @PathVariable String user_id){
+    @PostMapping("/event/{username}")
+    public ResponseEntity<?> addEvent(@Valid @RequestBody Event event, BindingResult result,@PathVariable String username){
         ResponseEntity<?> erroMap = mapValidationErrorService.MapValidationService(result);
         if (erroMap != null) return  erroMap;
-
-        Event event1 = eventService.addEvent(user_id, event);
-
+        Event event1 = eventService.addEvent(username, event);
         return new ResponseEntity<Event>(event1,HttpStatus.CREATED);
     }
-
-
-
-
 
 
 

@@ -16,8 +16,6 @@ import javax.persistence.PersistenceContext;
 public class PostService {
 
 
-    private PostEntity postEntity;
-
     @Autowired
     private UserRepository userRepository;
 

@@ -34,6 +34,8 @@ public class User {
 
     private int age;
 
+    private String location;
+
     @NotBlank(message = "Please register your email adress")
     @Column(unique=true, nullable=false)
     private String email;
@@ -54,6 +56,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     @OrderBy("created_at DESC ")
     private List<Event> event =  new LinkedList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OrderBy("created_at DESC ")
+    private List<Comment> comment =  new LinkedList<>();
 
 
 
@@ -179,5 +185,21 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
     }
 }

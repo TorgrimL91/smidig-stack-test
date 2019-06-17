@@ -16,7 +16,7 @@ public class Event {
 
     private String eventName;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-ddHH:mm")
     private Date startDate;
 
     private String location;
