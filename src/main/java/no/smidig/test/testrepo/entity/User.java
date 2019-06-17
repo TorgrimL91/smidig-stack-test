@@ -36,12 +36,12 @@ public class User {
 
     private String location;
 
-    @NotBlank(message = "Please register your email adress")
+    @NotBlank(message = "Please register your email address")
     @Column(unique=true, nullable=false)
     private String email;
 
 
-    // jeg måte fjerne nullable=false på telefonnummeret
+
     @NotNull(message = "Please register your phone number")
     @Column(unique = true,nullable=false)
     private int phoneNumber;

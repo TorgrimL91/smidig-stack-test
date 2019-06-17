@@ -86,4 +86,12 @@ public class Comment {
     public void setPost(PostEntity post) {
         this.post = post;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

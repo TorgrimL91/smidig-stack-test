@@ -32,8 +32,6 @@ public class UserService {
 
     public void deleteUserByIdentifier(String username){
         User user = userRepository.findByUserName(username);
-
-        //dette er dårlig kode. vi har allerede gjort et databasekall. bør være unødvendig å gjøre et til. fiks dette senere
         userRepository.deleteById(user.getId());
     }
 

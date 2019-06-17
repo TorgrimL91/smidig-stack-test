@@ -26,8 +26,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @Autowired
-    private CommentService commentService;
+
 
 
     @Autowired
@@ -41,15 +40,7 @@ public class PostController {
     }
 
 
-    @PostMapping("/comment/{username}")
-    public ResponseEntity<?> addComment(@Valid @RequestBody Comment comment, BindingResult result,
-                                        @PathVariable String username){
-        ResponseEntity<?> erroMap = mapValidationErrorService.MapValidationService(result);
-        if(erroMap != null) return erroMap;
 
-        Comment comment1 = commentService.addComment(username, comment);
-        return new ResponseEntity<Comment>(comment1, HttpStatus.CREATED);
-    }
 
     @GetMapping("/{username}")
     public ResponseEntity<?> getPostByPostId(@PathVariable String username){

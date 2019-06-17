@@ -4,7 +4,7 @@ import no.smidig.test.testrepo.entity.Comment;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
-    Comment getById(Long id);
+    Comment getById(String username);
 
     Iterable<Comment> findAll();
 }

@@ -1,12 +1,10 @@
 package no.smidig.test.testrepo.controller;
 
+import no.smidig.test.testrepo.entity.Comment;
 import no.smidig.test.testrepo.entity.Event;
 import no.smidig.test.testrepo.entity.PostEntity;
 import no.smidig.test.testrepo.entity.User;
-import no.smidig.test.testrepo.service.EventService;
-import no.smidig.test.testrepo.service.MapValidationErrorService;
-import no.smidig.test.testrepo.service.PostService;
-import no.smidig.test.testrepo.service.UserService;
+import no.smidig.test.testrepo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +28,9 @@ public class UserController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
@@ -71,6 +72,14 @@ public class UserController {
     }
 
 
+    @PostMapping("/comment/{username}")
+    public ResponseEntity<?> addComment(@Valid @RequestBody Comment comment, BindingResult result,@PathVariable String username){
+        ResponseEntity<?> erroMap = mapValidationErrorService.MapValidationService(result);
+        if(erroMap != null) return erroMap;
+
+        Comment comment1 = commentService.addComment(username, comment);
+        return new ResponseEntity<Comment>(comment1, HttpStatus.CREATED);
+    }
 
     @GetMapping("/all")
     public Iterable<User> getAllUsers(){
