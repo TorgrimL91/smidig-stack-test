@@ -13,10 +13,6 @@ import java.util.List;
 @Entity
 public class User {
 
-    /**
-     * Nå har je satt annotation på kolonene i databasen
-     * **/
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -96,6 +92,7 @@ public class User {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 
 
 
